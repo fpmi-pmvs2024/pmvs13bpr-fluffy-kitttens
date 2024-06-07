@@ -21,6 +21,10 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+<<<<<<< HEAD
         assertEquals("com.fluffykittens.lab8", appContext.getPackageName());
+=======
+        assertEquals("com.lab8.tetris", appContext.getPackageName());
+>>>>>>> origin/main
     }
 }
