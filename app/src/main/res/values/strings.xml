@@ -1,5 +1,16 @@
 <resources>
-    <string name="app_name">Tetris</string>
+    <string name="DB">Users_DB</string>
+    <string name="app_name">Fluffy Kittens</string>
+    <string name="mail">Укажите почту</string>
+    <string name="password">Введите пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up_msg">Ещё не зарегистрировались?</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="password_check">Повторите пароль</string>
+    <string name="user_name_lbl">Добро пожаловать!</string>
+    <string name="start">Начать игру</string>
+    <string name="sign_out">Выйти из аккаунта</string>
+    <string name="exit">Выйти к профилю</string>
     <string name="pause">Pause</string>
     <string name="play">Play</string>
     <string name="start_new_game">Start New Game</string>

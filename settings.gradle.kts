@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "tetris"
+rootProject.name = "Lab8"
 include(":app")
  
