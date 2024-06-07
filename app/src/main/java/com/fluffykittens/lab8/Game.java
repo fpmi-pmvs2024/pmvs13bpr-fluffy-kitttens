@@ -105,7 +105,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         rightButton.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
         downButton.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-        downButton.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        downButton.addRule(RelativeLayout.ABOVE, down.getId());
 
         pausebutton.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         pausebutton.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
@@ -116,9 +116,9 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         speedbutton.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         speedbutton.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 
-        forDownButton.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-
-
+        forDownButton.addRule(RelativeLayout.ABOVE, RelativeLayout.TRUE);
+        forDownButton.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        forDownButton.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
         left.setLayoutParams(leftButton);
         right.setLayoutParams(rightButton);
