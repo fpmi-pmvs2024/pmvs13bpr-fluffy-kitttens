@@ -1,4 +1,4 @@
-package com.lab8.tetris;
+package com.fluffykittens.lab8;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -86,6 +86,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         RelativeLayout.LayoutParams pausebutton = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         RelativeLayout.LayoutParams scoretext = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         RelativeLayout.LayoutParams speedbutton = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams forDownButton = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
 
         gameButtons.setLayoutParams(rl);
         gameButtons.addView(left);
@@ -114,12 +116,16 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         speedbutton.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         speedbutton.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 
+        forDownButton.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+
+
+
         left.setLayoutParams(leftButton);
         right.setLayoutParams(rightButton);
         rotateAc.setLayoutParams(downButton);
         pause.setLayoutParams(pausebutton);
         score.setLayoutParams(scoretext);
-        down.setLayoutParams(leftButton);
+        down.setLayoutParams(forDownButton);
         difficultyToggle.setLayoutParams(speedbutton);
 
         game.addView(drawView);

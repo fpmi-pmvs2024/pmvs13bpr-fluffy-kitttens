@@ -1,4 +1,4 @@
-package com.lab8.tetris;
+package com.fluffykittens.lab8;
 
 import org.junit.Test;
 

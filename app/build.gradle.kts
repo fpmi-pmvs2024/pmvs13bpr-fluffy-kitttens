@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.lab8.tetris"
+    namespace = "com.fluffykittens.lab8"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.lab8.tetris"
+        applicationId = "com.fluffykittens.lab8"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

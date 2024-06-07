@@ -1,4 +1,4 @@
-package com.lab8.tetris;
+package com.fluffykittens.lab8;
 
 import android.content.Context;
 import android.graphics.Canvas;
