@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fluffy Kittens</string>
+    <string name="mail">Enter your email</string>
+    <string name="password">Enter your password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up_msg">Not registered yet?</string>
+    <string name="sign_up">Register</string>
+    <string name="password_check">Enter your password again</string>
+    <string name="user_name_lbl">Welcome!</string>
+    <string name="start">Start</string>
+    <string name="sign_out">Log Out</string>
+    <string name="exit">Back to profile</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
+    <string name="start_new_game">New game</string>
+    <string name="easy">Easy Mode</string>
+    <string name="hard">Hard Mode</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="rotate_ac">Rotate</string>
+    <string name="score">Score</string>
+    <string name="game_over">Game over</string>
+    <string name="down">Down</string>
+</resources>
