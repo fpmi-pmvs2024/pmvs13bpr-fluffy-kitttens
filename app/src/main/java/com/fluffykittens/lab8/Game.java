@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -158,6 +159,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         recordRepository = new RecordRepository(this);
 
         handler = new Handler(Looper.getMainLooper());
+
         loop = new Runnable() {
             public void run() {
                 if (gameState.status) {
@@ -180,11 +182,13 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                         handler.postDelayed(this, delay);
                     }
                 } else {
+                    // Вызываем AsyncTask после завершения цикла
+                    new DatabaseTask(Game.this).execute();
                     pause.setText(R.string.start_new_game);
                 }
             }
-
         };
+
         loop.run();
     }
 
@@ -215,33 +219,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 }
             } else {
                 pause.setText(R.string.start_new_game);
-                Intent intent = new Intent(Game.this, MainActivity.class);
-                startActivity(intent);
-
-                // по идее сюда надо вставить запись в рекорды
-
-                // @TODO: выбрать и поправить один из вариантов ниже
-                // второй в приоритете
-
-                // тут 0 поменять на userId правильный
-//                recordRepository.insertRecord(0, gameState.score);
-
-                // а тут мой email на username правильный
-                recordRepository.insertRecord(
-                        "petrik3003@gmail.com",
-                        gameState.score,
-                        new RecordRepository.InsertCallback() {
-                            @Override
-                            public void onInsertSuccess(RecordData record) {
-                                // Тут добавь если умеешь сообщения всякие
-                            }
-
-                            @Override
-                            public void onInsertFailure(String message) {
-                                // Тут добавь если умеешь сообщения всякие
-                            }
-                        }
-                );
             }
         } else if (action == difficultyToggle) {
             if (!gameState.difficultMode) {
@@ -256,5 +233,25 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
             }
         }
+    }
+
+    void setRecordIntoDatabase() {
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        recordRepository.insertRecord(
+                username,
+                gameState.score,
+                new RecordRepository.InsertCallback() {
+                    @Override
+                    public void onInsertSuccess(RecordData record) {
+                        Log.d("GAME", "SUCCESS INSERTION INTO DATABASE");
+                    }
+
+                    @Override
+                    public void onInsertFailure(String message) {
+                        Log.d("GAME", "FAILURE INSERTION INTO DATABASE");
+                    }
+                }
+        );
     }
 }

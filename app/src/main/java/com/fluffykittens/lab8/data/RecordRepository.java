@@ -57,8 +57,10 @@ public class RecordRepository {
                 RecordData record = new RecordData();
                 record.userId = userData.uid;
                 record.result = result;
-                recordDao.insert(record);
-                new Handler(Looper.getMainLooper()).post(() -> callback.onInsertSuccess(record));
+                executorService.execute(() -> {
+                    recordDao.insert(record);
+                    new Handler(Looper.getMainLooper()).post(() -> callback.onInsertSuccess(record));
+                });
             } else {
                 new Handler(Looper.getMainLooper()).post(() -> callback.onInsertFailure("User not found"));
             }

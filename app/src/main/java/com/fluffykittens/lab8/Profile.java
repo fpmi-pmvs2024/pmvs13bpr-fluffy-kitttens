@@ -3,6 +3,7 @@ package com.fluffykittens.lab8;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -44,8 +45,9 @@ public class Profile extends AppCompatActivity {
         intent_start = new Intent(Profile.this, com.fluffykittens.lab8.Game.class);
         intent_records = new Intent(Profile.this, com.fluffykittens.lab8.Records.class);
 
-        Bundle arguments = getIntent().getExtras();
-        String user = arguments.get("username").toString();
+        Intent intent = getIntent();
+        String user = intent.getStringExtra("username");
+        intent_records.putExtra("username", user);
         intent_start.putExtra("username", user);
 
         userRepository = new UserRepository(this);
@@ -55,7 +57,6 @@ public class Profile extends AppCompatActivity {
             nameLabel.setText(user_name[0]);
             intent_start.putExtra("password", user_info[0]);
         });
-
 
         Animation a = AnimationUtils.loadAnimation(this, R.anim.flicker);
         a.reset();

@@ -3,6 +3,7 @@ package com.fluffykittens.lab8;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
                         {
                             Toast.makeText(getApplicationContext(), "Успешный вход",Toast.LENGTH_SHORT).show();
                             intent_profile.putExtra("username", username);
+
+                            Log.d("Main activity", "Set username: " + username);
                             startActivity(intent_profile);
                         }
                         else

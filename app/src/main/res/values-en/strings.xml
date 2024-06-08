@@ -24,4 +24,5 @@
     <string name="game_over">Game over</string>
     <string name="down">Down</string>
     <string name="records">Records</string>
+    <string name="back_to_profile">Back to profile</string>
 </resources>

@@ -55,7 +55,6 @@ public class GameState {
     }
 
     private boolean canTetraminoDisplace(Tetramino tetramino, Coordinate displacement) {
-
         for (BasicBlock block : tetramino.blocks) {
             if (block.state == BasicBlockState.ON_TETRAMINO) {
                 Coordinate shifted = Coordinate.add(block.coordinate, displacement);
@@ -137,7 +136,6 @@ public class GameState {
     }
 
     void incrementScore() {
-
         this.score++;
     }
 
