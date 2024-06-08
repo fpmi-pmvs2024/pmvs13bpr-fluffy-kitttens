@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="DB">Users_DB</string>
     <string name="app_name">Fluffy Kittens</string>
     <string name="mail">Enter your email</string>
     <string name="password">Enter your password</string>
@@ -22,4 +23,5 @@
     <string name="score">Score</string>
     <string name="game_over">Game over</string>
     <string name="down">Down</string>
+    <string name="records">Records</string>
 </resources>

@@ -63,4 +63,17 @@
         app:layout_constraintTop_toBottomOf="@+id/btnStartGame"
         app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="361dp"
+        android:text="@string/records"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignOut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartGame" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

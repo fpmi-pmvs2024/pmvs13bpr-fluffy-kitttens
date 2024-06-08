@@ -121,11 +121,9 @@ class DrawView extends View {
             DrawMatrix(gameState.board, canvas);
             DrawTetramino(gameState.falling, canvas);
             paint.setColor(Color.BLACK);
-            paint.setTextSize(200);
+            paint.setTextSize(100);
             canvas.drawText(getResources().getString(R.string.game_over), 60, 800, paint);
             PrintScore(gameState.score, canvas);
         }
-
     }
-
 }

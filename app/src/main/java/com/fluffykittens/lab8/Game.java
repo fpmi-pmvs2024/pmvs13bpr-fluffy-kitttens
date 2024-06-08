@@ -211,6 +211,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 Intent intent = new Intent(Game.this, MainActivity.class);
                 startActivity(intent);
 
+                // по идее сюда надо вставить запись в рекорды
+
             }
         } else if (action == difficultyToggle) {
             if (!gameState.difficultMode) {
