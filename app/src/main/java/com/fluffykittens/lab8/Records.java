@@ -38,7 +38,7 @@ public class Records extends AppCompatActivity {
                 records_info.append(i + ". " + recordData.result.toString() + "\n");
                 i++;
             }
-            if (i == 2) {
+            if (i == 1) {
                 records_info.setText(R.string.no_records);
             }
         });

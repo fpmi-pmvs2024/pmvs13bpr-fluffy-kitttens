@@ -74,7 +74,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         score = new TextView(this);
         score.setText(R.string.score);
         score.setId(R.id.score);
-        score.setTextSize(30);
+        score.setTextSize(20);
 
         difficultyToggle = new Button(this);
         difficultyToggle.setText(R.string.easy);
