@@ -24,4 +24,11 @@
     <string name="down">Вниз</string>
     <string name="records">Рекорды</string>
     <string name="back_to_profile">Вернуться в профиль</string>
+    <string name="no_records">Еще нет рекордов</string>
+    <string name="user_already_exists">Аккаунт с такой почтой уже существует</string>
+    <string name="incorrect_symbols">В пароле недопустимые символы</string>
+    <string name="success_registration">Успешная регистрация</string>
+    <string name="passwords_dont_match">Пароли не совпадают</string>
+    <string name="small_password">Пароль слишком короткий (менее 8)</string>
+    <string name="incorrect_email">Почта введена некорректно</string>
 </resources>

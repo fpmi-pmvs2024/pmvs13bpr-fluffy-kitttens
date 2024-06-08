@@ -13,7 +13,7 @@ public interface RecordDao {
     @Query("SELECT * FROM record WHERE userId = :userId")
     LiveData<List<RecordData>> getAllByUserId(Integer userId);
 
-    @Query("SELECT * FROM record WHERE userId = (SELECT uid FROM user WHERE username = :username)")
+    @Query("SELECT * FROM record WHERE userId = (SELECT uid FROM user WHERE username = :username) ORDER BY result DESC LIMIT 5;")
     LiveData<List<RecordData>> getAllByUsername(String username);
 
     @Insert

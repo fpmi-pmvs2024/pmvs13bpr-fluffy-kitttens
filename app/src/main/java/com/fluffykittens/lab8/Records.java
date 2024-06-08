@@ -2,12 +2,9 @@ package com.fluffykittens.lab8;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fluffykittens.lab8.data.RecordData;
@@ -22,18 +19,6 @@ public class Records extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.records);
         recordRepository = new RecordRepository(this);
-
-//        Ну тут нормальное отображение сделать короче и готово
-//        recordRepository.getRecordsByUserId(1, records -> {
-//            for (RecordData recordData : records) {
-//                Toast.makeText(this, "there is a record!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        recordRepository.getRecordsByUsername("petrik3003@gmail.com", records -> {
-//            for (RecordData recordData : records) {
-//                Toast.makeText(this, "there is a record!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         back_to_profile = (Button) findViewById(R.id.bt_back_to_profile);
         records_info = (TextView) findViewById(R.id.tv_records);
@@ -50,8 +35,11 @@ public class Records extends AppCompatActivity {
         recordRepository.getRecordsByUsername(username, records -> {
             Integer i = 1;
             for (RecordData recordData : records) {
-                records_info.append(i.toString() + ". " + recordData.result.toString() + "\n");
+                records_info.append(i + ". " + recordData.result.toString() + "\n");
                 i++;
+            }
+            if (i == 2) {
+                records_info.setText(R.string.no_records);
             }
         });
 

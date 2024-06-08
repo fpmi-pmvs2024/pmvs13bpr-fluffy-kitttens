@@ -6,12 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.fluffykittens.lab8.data.AppDatabaseProvider;
-import com.fluffykittens.lab8.data.UserDao;
-import com.fluffykittens.lab8.data.UserData;
 import com.fluffykittens.lab8.data.UserRepository;
 
 public class SignUp extends AppCompatActivity {
@@ -37,7 +32,7 @@ public class SignUp extends AppCompatActivity {
                 String password_2 = pswd_conf.getText().toString();
                 userRepository.checkUserExists(username, user -> {
                     if (user != null) {
-                        Toast.makeText(getApplicationContext(),"Аккаунт с такой почтой уже существует",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),R.string.user_already_exists,Toast.LENGTH_SHORT).show();
                     } else {
                         if (username.contains("@"))
                         {
@@ -47,28 +42,28 @@ public class SignUp extends AppCompatActivity {
                                 {
                                     if (password.contains("/"))
                                     {
-                                        Toast.makeText(getApplicationContext(),"В пароле недопустимые символы",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),R.string.incorrect_symbols,Toast.LENGTH_SHORT).show();
                                     }
                                     else
                                     {
                                         userRepository.insertUser(username, password + "/0/0/0");
-                                        Toast.makeText(getApplicationContext(), "Успешная регистрация",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), R.string.success_registration,Toast.LENGTH_SHORT).show();
                                         startActivity(intent_sign_in);
                                     }
                                 }
                                 else
                                 {
-                                    Toast.makeText(getApplicationContext(),"Пароли не совпадают",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),R.string.passwords_dont_match,Toast.LENGTH_SHORT).show();
                                 }
                             }
                             else
                             {
-                                Toast.makeText(getApplicationContext(),"Пароль слишком короткий (< 8)",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),R.string.small_password,Toast.LENGTH_SHORT).show();
                             }
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(),"Почта введена некорректно",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),R.string.incorrect_email,Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

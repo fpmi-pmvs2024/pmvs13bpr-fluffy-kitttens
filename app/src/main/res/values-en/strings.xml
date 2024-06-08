@@ -25,4 +25,11 @@
     <string name="down">Down</string>
     <string name="records">Records</string>
     <string name="back_to_profile">Back to profile</string>
+    <string name="no_records">There is no records</string>
+    <string name="user_already_exists">Account with this email already exists</string>
+    <string name="incorrect_symbols">There is incorrect symbols into password</string>
+    <string name="success_registration">Successful registration</string>
+    <string name="passwords_dont_match">Passwords dont match</string>
+    <string name="small_password">Password is too small(less 8)</string>
+    <string name="incorrect_email">Incorrect email</string>
 </resources>
