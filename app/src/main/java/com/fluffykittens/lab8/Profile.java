@@ -23,6 +23,9 @@ public class Profile extends AppCompatActivity {
     Intent intent_sign_in;
     Intent intent_start;
 
+    Intent intent_profile;
+    Button profile_btn;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +34,10 @@ public class Profile extends AppCompatActivity {
         nameLabel = (TextView) findViewById(R.id.userName);
         exit_btn = (Button)findViewById(R.id.btnSignOut);
         start_btn = (Button)findViewById(R.id.btnStartGame);
+        profile_btn = (Button)findViewById(R.id.btnProfile);
         intent_sign_in = new Intent(Profile.this, com.fluffykittens.lab8.MainActivity.class);
-
-
         intent_start = new Intent(Profile.this, com.fluffykittens.lab8.Game.class);
+        intent_profile = new Intent(Profile.this, com.fluffykittens.lab8.Records.class);
 
         Bundle arguments = getIntent().getExtras();
         String user = arguments.get("username").toString();
@@ -59,6 +62,13 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(intent_sign_in);
+            }
+        });
+
+        profile_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent_profile);
             }
         });
     }
