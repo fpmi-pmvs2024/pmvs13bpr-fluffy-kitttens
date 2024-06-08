@@ -1,9 +1,7 @@
 package com.fluffykittens.lab8;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -12,6 +10,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.fluffykittens.lab8.data.AppDatabase;
+import com.fluffykittens.lab8.data.AppDatabaseProvider;
+import com.fluffykittens.lab8.data.UserDao;
+import com.fluffykittens.lab8.data.UserRepository;
 
 public class Profile extends AppCompatActivity {
 
@@ -23,8 +26,10 @@ public class Profile extends AppCompatActivity {
     Intent intent_sign_in;
     Intent intent_start;
 
-    Intent intent_profile;
+    Intent intent_records;
     Button profile_btn;
+
+    UserRepository userRepository;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,16 +42,20 @@ public class Profile extends AppCompatActivity {
         profile_btn = (Button)findViewById(R.id.btnProfile);
         intent_sign_in = new Intent(Profile.this, com.fluffykittens.lab8.MainActivity.class);
         intent_start = new Intent(Profile.this, com.fluffykittens.lab8.Game.class);
-        intent_profile = new Intent(Profile.this, com.fluffykittens.lab8.Records.class);
+        intent_records = new Intent(Profile.this, com.fluffykittens.lab8.Records.class);
 
         Bundle arguments = getIntent().getExtras();
         String user = arguments.get("username").toString();
         intent_start.putExtra("username", user);
-        SharedPreferences mSettings = getSharedPreferences(getResources().getString(R.string.DB), Context.MODE_PRIVATE);
-        String[] user_info = mSettings.getString(user, "").split("/");
-        String[] user_name = user.split("@");
-        nameLabel.setText(user_name[0]);
-        intent_start.putExtra("password", user_info[0]);
+
+        userRepository = new UserRepository(this);
+        userRepository.getUserByUsername(user, userData -> {
+            String[] user_info = userData.password.split("/");
+            String[] user_name = user.split("@");
+            nameLabel.setText(user_name[0]);
+            intent_start.putExtra("password", user_info[0]);
+        });
+
 
         Animation a = AnimationUtils.loadAnimation(this, R.anim.flicker);
         a.reset();
@@ -68,7 +77,7 @@ public class Profile extends AppCompatActivity {
         profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent_profile);
+                startActivity(intent_records);
             }
         });
     }

@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fluffykittens.lab8.data.RecordData;
+import com.fluffykittens.lab8.data.RecordRepository;
+
 public class Game extends AppCompatActivity implements View.OnClickListener {
 
     DrawView drawView;
@@ -32,6 +35,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     int delayFactor;
     int delay;
     int delayLowerLimit;
+
+    RecordRepository recordRepository;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -150,6 +155,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         View downButtonListener = findViewById(R.id.down);
         downButtonListener.setOnClickListener(this);
 
+        recordRepository = new RecordRepository(this);
+
         handler = new Handler(Looper.getMainLooper());
         loop = new Runnable() {
             public void run() {
@@ -213,6 +220,28 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
                 // по идее сюда надо вставить запись в рекорды
 
+                // @TODO: выбрать и поправить один из вариантов ниже
+                // второй в приоритете
+
+                // тут 0 поменять на userId правильный
+//                recordRepository.insertRecord(0, gameState.score);
+
+                // а тут мой email на username правильный
+                recordRepository.insertRecord(
+                        "petrik3003@gmail.com",
+                        gameState.score,
+                        new RecordRepository.InsertCallback() {
+                            @Override
+                            public void onInsertSuccess(RecordData record) {
+                                // Тут добавь если умеешь сообщения всякие
+                            }
+
+                            @Override
+                            public void onInsertFailure(String message) {
+                                // Тут добавь если умеешь сообщения всякие
+                            }
+                        }
+                );
             }
         } else if (action == difficultyToggle) {
             if (!gameState.difficultMode) {
