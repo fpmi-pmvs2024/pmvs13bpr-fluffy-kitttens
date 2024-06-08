@@ -99,7 +99,7 @@ class DrawView extends View {
         paint.setColor(Color.TRANSPARENT);
         canvas.drawRect(0, 100, 200, 200, paint);
         paint.setColor(Color.BLACK);
-        paint.setTextSize(100);
+        paint.setTextSize(50);
         canvas.drawText(Integer.toString(score), 80, 170, paint);
 
     }

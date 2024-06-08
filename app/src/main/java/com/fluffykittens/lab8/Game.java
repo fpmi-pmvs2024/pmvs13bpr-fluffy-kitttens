@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -12,6 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.fluffykittens.lab8.data.RecordData;
+import com.fluffykittens.lab8.data.RecordRepository;
 
 public class Game extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +36,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     int delayFactor;
     int delay;
     int delayLowerLimit;
+
+    RecordRepository recordRepository;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,7 +74,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         score = new TextView(this);
         score.setText(R.string.score);
         score.setId(R.id.score);
-        score.setTextSize(30);
+        score.setTextSize(20);
 
         difficultyToggle = new Button(this);
         difficultyToggle.setText(R.string.easy);
@@ -150,7 +156,10 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         View downButtonListener = findViewById(R.id.down);
         downButtonListener.setOnClickListener(this);
 
+        recordRepository = new RecordRepository(this);
+
         handler = new Handler(Looper.getMainLooper());
+
         loop = new Runnable() {
             public void run() {
                 if (gameState.status) {
@@ -173,11 +182,13 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                         handler.postDelayed(this, delay);
                     }
                 } else {
+                    // Вызываем AsyncTask после завершения цикла
+                    new DatabaseTask(Game.this).execute();
                     pause.setText(R.string.start_new_game);
                 }
             }
-
         };
+
         loop.run();
     }
 
@@ -208,11 +219,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 }
             } else {
                 pause.setText(R.string.start_new_game);
-                Intent intent = new Intent(Game.this, MainActivity.class);
-                startActivity(intent);
-
-                // по идее сюда надо вставить запись в рекорды
-
             }
         } else if (action == difficultyToggle) {
             if (!gameState.difficultMode) {
@@ -227,5 +233,25 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
             }
         }
+    }
+
+    void setRecordIntoDatabase() {
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        recordRepository.insertRecord(
+                username,
+                gameState.score,
+                new RecordRepository.InsertCallback() {
+                    @Override
+                    public void onInsertSuccess(RecordData record) {
+                        Log.d("GAME", "SUCCESS INSERTION INTO DATABASE");
+                    }
+
+                    @Override
+                    public void onInsertFailure(String message) {
+                        Log.d("GAME", "FAILURE INSERTION INTO DATABASE");
+                    }
+                }
+        );
     }
 }
